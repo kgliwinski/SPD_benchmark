@@ -29,12 +29,12 @@ double sortR(std::vector<Job> &jobs)
 {
     TimeVar t1 = timeNow();
     std::sort(jobs.begin(), jobs.end(), compareJobs);
-    double ret =  duration(timeNow() - t1);
-    std::cout << "Nr | rj | pj | qj " << std::endl;
-    for (auto job : jobs)
-    {
-        std::cout << std::setw(2) << job.id << " | " << std::setw(2) << job.prepareTime << " | " << std::setw(2) << job.processingTime << " | " << std::setw(2) << job.deliveryTime << std::endl;
-    }
+    double ret = duration(timeNow() - t1);
+    // std::cout << "Nr | rj | pj | qj " << std::endl;
+    // for (auto job : jobs)
+    // {
+    //     std::cout << std::setw(2) << job.id << " | " << std::setw(2) << job.prepareTime << " | " << std::setw(2) << job.processingTime << " | " << std::setw(2) << job.deliveryTime << std::endl;
+    // }
     return ret;
 }
 
@@ -42,13 +42,11 @@ std::vector<Job> generateJobsVector(int num)
 {
     std::vector<Job> jobs;
 
+    srand((unsigned)time(NULL));
     for (int i = 1; i <= num; ++i)
     {
-        srand((unsigned)time(NULL));
         int random1 = rand() % 100;
-        srand((unsigned)time(NULL));
         int random2 = rand() % 100;
-        srand((unsigned)time(NULL));
         int random3 = rand() % 100;
         jobs.push_back(Job(i, random1, random2, random3));
     }
@@ -65,6 +63,14 @@ int main()
     res = sortR(jobs);
     std::cout << res << std::endl;
     // for(int i = i; i < 100; ++i)
-
+    for (int i = 1; i <= 1000000; i += 1000)
+    {
+        jobs = generateJobsVector(i);
+        file << jobs.size() << ";";
+        // std::cout << jobs.size() << ";";
+        res = sortR(jobs);
+        file << std::setprecision(17) << res << ";\n";
+        // std::cout << std::setprecision(17) << res << ";\n";
+    }
     return 0;
 }

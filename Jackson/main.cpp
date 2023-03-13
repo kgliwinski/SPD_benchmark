@@ -22,7 +22,8 @@ struct Job
 
 bool compareJobs(const Job &a, const Job &b)
 {
-    if(a.releaseTime == b.releaseTime){
+    if (a.releaseTime == b.releaseTime)
+    {
         return a.processingTime > b.processingTime;
     }
     return a.releaseTime < b.releaseTime;
@@ -49,15 +50,14 @@ std::vector<Job> generateJobsVector(int num)
 {
     std::vector<Job> jobs;
 
+    srand((unsigned)time(NULL));
     for (int i = 1; i <= num; ++i)
     {
-        srand((unsigned)time(NULL));
         int random1 = rand() % 100;
-        srand((unsigned)time(NULL));
         int random2 = rand() % 100;
-        srand((unsigned)time(NULL));
         int random3 = rand() % 100;
         jobs.push_back(Job(i, random1, random2, random3));
+        std::cout << random1 << " " << random2 << " " << random3 << std::endl;
     }
     return jobs;
 }
@@ -68,8 +68,8 @@ int main()
     double res;
     std::vector<Job> jobs;
     std::cout.precision(17);
+    for (int i = 1; i <= 1000000; i += 1000)
     // for(int i = i; i < 100; ++i)
-    for (int i = 1; i <= 1000000; i+=1000)
     {
         jobs = generateJobsVector(i);
         file << jobs.size() << ";";

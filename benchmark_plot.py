@@ -8,7 +8,7 @@ time = []
 vals = []
 
 
-with open("Jackson/result.csv", 'r') as file:
+with open("RPQ/result.csv", 'r') as file:
     reader = csv.reader(file, delimiter=';')
     for row in reader:
         vals.append(int(row[0]))
