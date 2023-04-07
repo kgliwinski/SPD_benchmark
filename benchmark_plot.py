@@ -8,15 +8,20 @@ time = []
 vals = []
 
 
-with open("RPQ/result.csv", 'r') as file:
+with open("Schrage/result.csv", 'r') as file:
     reader = csv.reader(file, delimiter=';')
     for row in reader:
         vals.append(int(row[0]))
-        time.append(int(row[1]) / 1000)
+        time.append(float(row[1]))
 
 plt.figure()
-plt.plot(time, vals, 'bo')
-plt.xlabel(r"Time ($\mu$s)")
-plt.ylabel(r"Num. of processes")
+plt.plot(vals, time, 'bo')
+plt.plot(vals, np.polyval(np.polyfit(vals, time, 2), vals), 'r-')
+plt.xlabel(r"Num. of processes")
+plt.ylabel(r"Time (s)")
+# create a legend
+func = np.polyfit(vals, time, 2)
 plt.grid()
 plt.show()
+
+print(func)
