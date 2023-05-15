@@ -19,7 +19,7 @@ plt.figure()
 plt.plot(vals, time, 'bo')
 plt.xlabel(r"Num. of processes")
 plt.ylabel(r"Time (us)")
-plt.xticks(np.arange(4, 11, 1))
+# plt.xticks(np.arange(4, 11, 1))
 # create a legend
 plt.grid()
 plt.show()
